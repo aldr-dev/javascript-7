@@ -38,7 +38,6 @@ const App = () => {
     console.log('click');
   };
 
-
   return (
     <div className="constructor-container">
       <fieldset className="order-list">
