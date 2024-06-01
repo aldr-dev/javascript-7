@@ -1,4 +1,5 @@
 import React from 'react';
+import './CardMenu.css';
 
 interface CardProps {
   image: string;
