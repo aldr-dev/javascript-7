@@ -8,6 +8,8 @@ import lemonadeImage from './assets/ic-lemonade.png';
 import colaImage from './assets/ic-cola.png';
 import {OrderList} from './types';
 import CardMenu from './components/CardMenu/CardMenu';
+import OrderDetails from './components/OrderDetails/OrderDetails';
+import TotalOrderPrice from './components/TotalOrderPrice/TotalOrderPrice';
 
 interface MenuItem {
   name: string;
@@ -34,16 +36,38 @@ const App = () => {
     {name: 'Cola', count: 0},
   ]);
 
-  const click = () => {
-    console.log('click');
+  const updateCounterValue = (name: string, change: number) => {
+    setOrderList((prevState) => {
+      const updatedList = prevState.map((item) => {
+        if (item.name === name) {
+          return {
+            ...item,
+            count: item.count + change,
+          };
+        }
+        return item;
+      });
+
+      const sortedList: OrderList[] = [...updatedList].sort((a, b) => b.count - a.count);
+      return sortedList;
+    });
+  };
+
+  const addOrder = (name: string) => {
+    updateCounterValue(name, 1);
+  };
+
+  const deleteOrder = (name: string) => {
+    updateCounterValue(name, -1);
   };
 
   return (
     <div className="constructor-container">
       <fieldset className="order-list">
         <legend className="constructor-name">Order Details:</legend>
+        <OrderDetails orderList={orderList} onClickButtonDelete={deleteOrder}/>
+        <TotalOrderPrice orderList={orderList} menuItem={menuItem}/>
       </fieldset>
-
 
       <fieldset className="card-menu-list">
         <legend className="constructor-name">Add items:</legend>
@@ -55,7 +79,7 @@ const App = () => {
                 image={card.image}
                 name={card.name}
                 price={card.price}
-                onClickCard={() => click()}
+                onClickCard={() => addOrder(card.name)}
               />
             );
           })}

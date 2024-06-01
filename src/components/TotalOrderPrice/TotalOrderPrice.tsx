@@ -1,5 +1,6 @@
 import React from 'react';
 import {OrderList} from '../../types';
+import './TotalOrderPrice.css';
 
 interface TotalOrderPriceProps {
   orderList: OrderList[];
@@ -13,9 +14,11 @@ const TotalOrderPrice: React.FC<TotalOrderPriceProps> = ({orderList, menuItem}) 
   }, 0);
 
   return (
-    <div>
-      <p>Total price: {totalOrderPrice} KGS</p>
-    </div>
+    <>
+      {totalOrderPrice !== 0 ? (
+        <p>Total price: {totalOrderPrice} <span className="currency">kgs</span></p>
+      ) : null}
+    </>
   );
 };
 

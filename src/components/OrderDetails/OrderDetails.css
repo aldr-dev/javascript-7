@@ -1,0 +1,26 @@
+.order-item {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.button-delete {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.ic-delete-trash {
+  height: auto;
+  width: 23px;
+}
+
+.ic-delete-order {
+  margin-left: auto;
+}
+
+.order-name {
+  width: 150px;
+}
